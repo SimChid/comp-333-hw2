@@ -1,55 +1,72 @@
-<html>
-<head></head>
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="application/x-www-form-urlencoded"/>
+  <title>Sign Up for StarTunes</title>
+</head>
+
 <body>
-    <div id="form">
-      <h1>Sign Up for StarTunes!</h1>
-      <h2>Please fill out the form below to create your account</h2>
-      <form name="form" action="verifySignUp.php" method="POST">
-        <p>
-          <label> username: </label>
-          <input type="text" id="user" name="username" />
-        </p>
+  <h1>Sign Up for StarTunes!</h1>
+  <h2>Please fill out the form below to create your account</h2>
+  <?php
 
-        <p>
-          <label> password: </label>
-          <input type="text" id="pass" name="password" />
-        </p>
+    $servername = "localhost";
+    $username = "root";
+    $password = "";
+    $dbname = "music_db";
 
-        <p>
-          <label> confirm password: </label>
-          <input type="text" id="pass" name="confirm" />
-        </p>
+    $conn = new mysqli($servername, $username, $password, $dbname);
 
-        <p>
-          <input type="submit" id="button" value="Login" />
-        </p>
-      </form>
-    </div>
+    if ($conn->connect_error) {die("Connection failed: " . $conn->connect_error);}
 
+    if(isset($_REQUEST["submit"])){
+      $out_value = "";
+      $s_username = $_REQUEST['username'];
+      $s_p1 = $_REQUEST['p1'];
+      $s_p2 = $_REQUEST['p2'];
 
+      if ($s_p1 != $s_p2){
+        $out_value = "Passwords must match";
+      } else{
+        if(!empty($s_username) && !empty($s_p1) && !empty($s_p2)){
+          $sql_query = "SELECT * FROM users WHERE username = ('$s_username')";
 
+          $result = mysqli_query($conn, $sql_query);
 
+          $row = mysqli_fetch_assoc($result);
+          if ($row != NULL){
+            $out_value = "Account with that username already exists, please enter a different username";
+          } else {
+            $sql = "INSERT INTO users (username, password) VALUES ('$s_username', '$s_p1')";
+            if ($conn->query($sql) === TRUE) {
+              $out_value = "New record created successfully";
+            } else {
+              $out_value = "Error: " . $sql . "<br>" . $conn->error;
+            }
+            
+          }
+          
+        }
+        else {
+          $out_value = "Please fill all fields!";
+        }
+      }
+      
+    }
+    $conn->close();
+  ?>
 
+  <form method="GET" action="">
+  Username: <input type="text" name="username" placeholder="Enter Username" /><br>
+  Password: <input type="text" name="p1" placeholder="Enter Password" /><br>
+  Confirm Password: <input type="text" name="p2" placeholder="Enter Password Again" /><br>
+  <input type="submit" name="submit" value="Submit"/>
 
-
-
-    <!--
-    <h1> Sign Up for StarTunes! </h1>
-    <br /><h2> Fill this out </h2>
-    <p>
-        <label> Username </label>
-        <input type = "text" id = "username">
-    </p>
-    <p>
-        <label> Password </label>
-        <input type = "text" id = "pass">
-    </p>
-    <p>
-        <label> Confirm Password </label>
-        <input type = "text" id = "passConfirm">
-    </p>
-    <p><input type  = "submit" id = "button" value = "Submit"></p>
-    <p><input type  = "reset" id = "button" value = "Reset"></p>
-    <br /><p> Already have an account? <a href = "index.php"> Log in here </a></p> -->
+  <p><?php 
+    if(!empty($out_value)){
+      echo $out_value;
+    }
+  ?></p>
+  </form>
 </body>
 </html>

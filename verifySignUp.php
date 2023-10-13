@@ -1,5 +1,5 @@
 <?php
-    //include 'dbconnection.php';
+    include 'dbconnection.php';
     $userid = $_POST['username'];
     $p1 = $_POST['password'];
     $p2 = $_POST['confirm'] ;
