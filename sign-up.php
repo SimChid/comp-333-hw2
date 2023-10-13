@@ -43,6 +43,10 @@
             } else {
               $out_value = "Error: " . $sql . "<br>" . $conn->error;
             }
+
+            session_start();
+            // I think I want to redirect here.
+
             
           }
           
