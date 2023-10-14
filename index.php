@@ -18,9 +18,9 @@
                 $result = mysqli_query($conn,$sql_query);
                 $num = mysqli_num_rows($result);
                 if($num > 0){
-                    $out_value = "Login successful!"
+                    $out_value = "Login successful!";
                 }else{
-                    $out_value = "Please try again"
+                    $out_value = "Please try again";
                 }
             }else{
                 $out_value = "Please fill out both fields";
