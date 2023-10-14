@@ -29,22 +29,30 @@
         $out_value = "Passwords must match";
       } else{
         if(!empty($s_username) && !empty($s_p1) && !empty($s_p2)){
-          $sql_query = "SELECT * FROM users WHERE username = ('$s_username')";
-
-          $result = mysqli_query($conn, $sql_query);
+          $sql_query = "SELECT * FROM users WHERE username = ?";
+          
+          $stmt = mysqli_prepare($conn,$sql_query) ;
+          mysqli_stmt_bind_param($stmt, "s", $s_username);
+          // Run the prepared statement.
+          mysqli_stmt_execute($stmt);
+          $result = mysqli_stmt_get_result($stmt);
 
           $row = mysqli_fetch_assoc($result);
-          if ($row != NULL){
+          $num = mysqli_num_rows($result);
+          if ($num > 0){
             $out_value = "Account with that username already exists, please enter a different username";
           } else {
-            $sql = "INSERT INTO users (username, password) VALUES ('$s_username', '$s_p1')";
-            if ($conn->query($sql) === TRUE) {
+            $sql = "INSERT INTO users (username, password) VALUES (?,?)";
+            $stmt = mysqli_prepare($conn,$sql) ;
+            mysqli_stmt_bind_param($stmt,"ss",$s_username,$s_p1) ;
+            $result = mysqli_stmt_execute($stmt);
+            if ($result === TRUE) {
               $out_value = "New record created successfully";
             } else {
-              $out_value = "Error: " . $sql . "<br>" . $conn->error;
+              $out_value = "Error";
             }
 
-            session_start();
+            //session_start();
             // I think I want to redirect here.
 
             
