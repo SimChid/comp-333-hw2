@@ -13,8 +13,8 @@
             $s_username = $_REQUEST["username"];
             $s_password = $_REQUEST["pass"];
 
-            if(!empty($s_username) && !empty($pass)){
-                $sql_query = "SELECT * FROM users WHERE username = ('$s_username') AND password = ('$s_pass')";
+            if(!empty($s_username) && !empty($s_password)){
+                $sql_query = "SELECT * FROM users WHERE username = ('$s_username') AND password = ('$s_password')";
                 $result = mysqli_query($conn,$sql_query);
                 $num = mysqli_num_rows($result);
                 if($num > 0){
