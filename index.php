@@ -19,6 +19,8 @@
                 $num = mysqli_num_rows($result);
                 if($num > 0){
                     $out_value = "Login successful!";
+                    header("location: ratingsPage.php");
+                    exit;
                 }else{
                     $out_value = "Please try again";
                 }
