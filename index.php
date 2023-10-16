@@ -22,7 +22,7 @@
                     $_SESSION['logged_in'] = true;
                     $_SESSION['user'] = $s_username;
                     header("location: ratingsPage.php");
-                    exit;
+                    exit();
                 }else{
                     $out_value = "Please try again";
                 }
