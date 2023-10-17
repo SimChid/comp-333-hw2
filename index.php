@@ -12,11 +12,17 @@
             $out_value = "";
             $s_username = $_REQUEST["username"];
             $s_password = $_REQUEST["pass"];
+            $hashpassword = password_hash($s_password,PASSWORD_DEFAULT);
             if(!empty($s_username) && !empty($s_password)){
-                $sql_query = "SELECT * FROM users WHERE username = ('$s_username') AND password = ('$s_password')";
-                $result = mysqli_query($conn,$sql_query);
+                $sql_query = "SELECT * FROM users WHERE username = ?";
+                $stmt = mysqli_prepare($conn,$sql_query);
+                mysqli_stmt_bind_param($stmt,"s",$s_username);
+                mysqli_stmt_execute($stmt);
+                $result = mysqli_stmt_get_result($stmt);
+                $arr = mysqli_fetch_assoc($result);
+                $pass_check = $arr['password'];
                 $num = mysqli_num_rows($result);
-                if($num > 0){
+                if($num > 0 && password_verify($s_password, $pass_check)){
                     $out_value = "Login successful!";
                     $_SESSION['logged_in'] = true;
                     $_SESSION['user'] = $s_username;
