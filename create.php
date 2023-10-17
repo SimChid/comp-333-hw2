@@ -29,9 +29,9 @@
             if (!empty($s_Artist) && !empty($s_Song) && !empty($s_Rating)){
                 // Rating field must be one digit between one and five (inclusive)
                 if (strlen($s_Rating) == 1 && is_numeric($s_Rating) && $s_Rating < 6 && $s_Rating > 0){
-                    $sql_query = "SELECT * FROM ratings where song = ?" ;
+                    $sql_query = "SELECT * FROM ratings where song = ? AND username = ?" ;
                     $stmt = mysqli_prepare($conn, $sql_query) ;
-                    mysqli_stmt_bind_param($stmt, "s", $s_Song) ;
+                    mysqli_stmt_bind_param($stmt, "ss", $s_Song, $s_user) ;
                     mysqli_stmt_execute($stmt) ;
                     $result = mysqli_stmt_get_result($stmt) ;
                     $num = mysqli_num_rows($result) ;
