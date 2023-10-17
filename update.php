@@ -27,7 +27,6 @@
         mysqli_stmt_execute($stmt) ;
         mysqli_stmt_bind_result($stmt, $s_id, $s_username,$s_artist,$s_song,$s_rating);
         mysqli_stmt_fetch($stmt) ;
-        $out_value = $s_username . $s_artist . $s_song . $s_rating ;
         
         if(isset($_REQUEST["submit"])){
             $conn = new mysqli($servername, $username, $password, $dbname);
@@ -49,7 +48,6 @@
                     $stmt = mysqli_prepare($conn, $sql_query) ;
                     
                     mysqli_stmt_bind_param($stmt, "ssdd", $s_Artist, $s_Song, $s_Rating, $s_ID) ;
-                    echo 'got past assigning and preparnig the query' ;
                     $result = mysqli_stmt_execute($stmt) ;
                     
                     // If the rating worked, go back to the page where the ratings are displayed
@@ -61,7 +59,6 @@
                     }
                     
                 } else {
-                    echo 'got past guard and into if branch2' ;
                     $out_value = "Rating must be a digit in the range 1 through 5" ;
                 }
             } else {
@@ -82,7 +79,6 @@
             <?php 
         if(!empty($out_value)){
         echo $out_value;
-        echo $s_id ;
         }
         ?>
         </p>
