@@ -43,53 +43,23 @@
             $num = mysqli_num_rows($result);
             if ($num > 0){$out_value = "Account with that username already exists, please enter a different username";}
             else {
+              $hashedPassword = password_hash($s_p1, PASSWORD_DEFAULT);
               $sql = "INSERT INTO users (username, password) VALUES (?,?)";
               $stmt = mysqli_prepare($conn,$sql) ;
-              mysqli_stmt_bind_param($stmt,"ss",$s_username,$s_p1) ;
+              mysqli_stmt_bind_param($stmt,"ss",$s_username,$hashedPassword) ;
               $result = mysqli_stmt_execute($stmt);
               if ($result == TRUE) {
                 $out_value = "New record created successfully";
+                session_start();
+                $_SESSION['logged_in'] = true;
+                $_SESSION['user'] = $s_username;
+                header("location: ratingsPage.php");
+                exit();
               } else {
                 $out_value = "Error";
               }
-              //session_start();
-              // I think I want to redirect here 
             } 
           } else { $out_value = "Please fill all fields!";}
-          if(!empty($s_username) && !empty($s_p1) && !empty($s_p2)){
-            $sql_query = "SELECT * FROM users WHERE username = ?";
-            
-            $stmt = mysqli_prepare($conn,$sql_query) ;
-            mysqli_stmt_bind_param($stmt, "s", $s_username);
-            // Run the prepared statement.
-            mysqli_stmt_execute($stmt);
-            $result = mysqli_stmt_get_result($stmt);
-
-            $row = mysqli_fetch_assoc($result);
-            $num = mysqli_num_rows($result);
-            if ($num > 0){
-              $out_value = "Account with that username already exists, please enter a different username";
-            } else {
-              $sql = "INSERT INTO users (username, password) VALUES (?,?)";
-              $stmt = mysqli_prepare($conn,$sql) ;
-              mysqli_stmt_bind_param($stmt,"ss",$s_username,$s_p1) ;
-              $result = mysqli_stmt_execute($stmt);
-              if ($result === TRUE) {
-                $out_value = "New record created successfully";
-              } else {
-                $out_value = "Error";
-              }
-
-              //session_start();
-              // I think I want to redirect here.
-
-              
-            }
-            
-          }
-          else {
-            $out_value = "Please fill all fields!";
-          }
         }
       }
   }

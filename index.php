@@ -12,7 +12,6 @@
             $out_value = "";
             $s_username = $_REQUEST["username"];
             $s_password = $_REQUEST["pass"];
-
             if(!empty($s_username) && !empty($s_password)){
                 $sql_query = "SELECT * FROM users WHERE username = ('$s_username') AND password = ('$s_password')";
                 $result = mysqli_query($conn,$sql_query);
@@ -29,7 +28,6 @@
             }else{
                 $out_value = "Please fill out both fields";
             }
-
             $conn->close();
         }
     ?>
