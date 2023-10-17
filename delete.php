@@ -26,12 +26,12 @@
             mysqli_stmt_execute($stmt);
             
             
-            $conn->close();
+            
             header("location: ratingsPage.php") ;
             exit() ;
         }
         
-
+        $conn->close();
     ?>
     <h1>Delete Rating</h1>
     <p>Are you sure you want to delete this rating?</p>
