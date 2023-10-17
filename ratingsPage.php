@@ -41,7 +41,7 @@
                 echo "<td>" . $rating['song'] . "</td>";
                 echo "<td>" . $rating['rating'] . "</td>";
                 if ($user == $rating['username']) {
-                    echo "<td><a href='view.php?songID=$i'>View</a> <a href='update.php?songID=$i'>Update</a> <a href='delete.php'>Delete</a></td>";
+                    echo "<td><a href='view.php?songID=$i'>View</a> <a href='update.php?songID=$i'>Update</a> <a href='delete.php?songID=$i'>Delete</a></td>";
                 } else {
                     echo "<td><a href='view.php?songID=$i'>View</a></td>";
                 }
