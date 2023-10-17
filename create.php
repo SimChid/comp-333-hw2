@@ -30,8 +30,9 @@
                 // Rating field must be one digit between one and five (inclusive)
                 if (strlen($s_Rating) == 1 && is_numeric($s_Rating) && $s_Rating < 6 && $s_Rating > 0){
                     $sql_query = "SELECT * FROM ratings where song = ? AND username = ?" ;
+                    
                     $stmt = mysqli_prepare($conn, $sql_query) ;
-                    mysqli_stmt_bind_param($stmt, "ss", $s_Song, $s_user) ;
+                    mysqli_stmt_bind_param($stmt, "ss", $s_Song, $user) ;
                     mysqli_stmt_execute($stmt) ;
                     $result = mysqli_stmt_get_result($stmt) ;
                     $num = mysqli_num_rows($result) ;
@@ -42,15 +43,11 @@
                         // We're good to insert the rating
                         $sql_query = "INSERT INTO ratings (username, artist, song, rating) VALUES (?, ?, ?, ?)" ;
                         $stmt = mysqli_prepare($conn, $sql_query) ;
-                        mysqli_stmt_bind_param($stmt, "sssi", $user, $s_Artist, $s_Song, $s_Rating) ;
+                        mysqli_stmt_bind_param($stmt, "sssi", $user,$s_Artist, $s_Song, $s_Rating) ;
                         $result = mysqli_stmt_execute($stmt) ;
                         // If the rating worked, go back to the page where the ratings are displayed
-                        if ($result){
-                            header("location: ratingsPage.php") ;
-                            exit() ;
-                        } else {
-                            $out_value = "Please try that again. Something went wrong" ;
-                        }
+                        if ($result){header("location: ratingsPage.php") ; exit() ;
+                        } else {$out_value = "Please try that again. Something went wrong" ;}
                     }
                 } else {
                     $out_value = "Rating must be a digit in the range 1 through 5" ;
@@ -64,17 +61,11 @@
     <h1>Add New Song Rating</h1>
     <p> Username:  <?php echo "$user" ; ?></p>
     <form method="GET" action="">
-    Artist: <input type="text" name="artist" placeholder="Artist" /><br>
-    Song: <input type="text" name="song" placeholder="Song" /><br>
-    Rating: <input type="text" name="rating" placeholder="Rating" /><br>
-    <input type="submit" name="submit" value="Post!"/>
-        <p>
-            <?php 
-        if(!empty($out_value)){
-        echo $out_value;
-        }
-        ?>
-        </p>
+        Artist: <input type="text" name="artist" placeholder="Artist" /><br>
+        Song: <input type="text" name="song" placeholder="Song" /><br>
+        Rating: <input type="text" name="rating" placeholder="Rating" /><br>
+        <input type="submit" name="submit" value="Post!"/>
+        <p><?php if(!empty($out_value)){echo $out_value;}?></p>
     </form>
 </body>
 </html>
