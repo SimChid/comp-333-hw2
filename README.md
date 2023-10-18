@@ -19,9 +19,7 @@ General functionality:
 
 Simon Chidley Tables:
 <img width="784" alt="Screenshot 2023-10-17 at 8 22 26 PM" src="https://github.com/SimChid/comp-333-hw2/assets/144281352/8a038597-a3b9-41dd-86ad-bfd22da57e0e">
-<img width="804" alt="Screenshot 2023-10-17 at 8 22 56 PM" src="https://github.com/SimChid/comp-333-hw2/assets/144281352/a9ff0824-0ed7-45d3-ad99-21b4782e8cb1">
+<img width="868" alt="Screenshot 2023-10-17 at 9 42 45 PM" src="https://github.com/SimChid/comp-333-hw2/assets/144281352/ce93acd4-7d0f-47a6-a8e5-3ecad8a61848">
 
 Aaron Foote Tables:
 <img width="900" alt="Screenshot 2023-10-17 at 8 37 26 PM" src="https://github.com/SimChid/comp-333-hw2/assets/130381602/c456b655-2459-47fa-bb28-a049bcaa8f73">
-<img width="868" alt="Screenshot 2023-10-17 at 9 42 45 PM" src="https://github.com/SimChid/comp-333-hw2/assets/144281352/ce93acd4-7d0f-47a6-a8e5-3ecad8a61848">
-
