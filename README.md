@@ -24,3 +24,4 @@ Simon Chidley Tables:
 
 Aaron Foote Tables:
 <img width="900" alt="Screenshot 2023-10-17 at 8 37 26 PM" src="https://github.com/SimChid/comp-333-hw2/assets/130381602/c456b655-2459-47fa-bb28-a049bcaa8f73">
+<img width="822" alt="Screenshot 2023-10-17 at 9 46 32 PM" src="https://github.com/SimChid/comp-333-hw2/assets/130381602/597de88a-4aa8-4682-ae88-c570bc2e0596">
