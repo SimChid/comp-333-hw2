@@ -13,7 +13,6 @@
             $out_value = "";
             $s_username = $_REQUEST["username"];
             $s_password = $_REQUEST["pass"];
-            $hashpassword = password_hash($s_password,PASSWORD_DEFAULT);
             // Guard checks that both fields are filled
             if(!empty($s_username) && !empty($s_password)){
                 $sql_query = "SELECT * FROM users WHERE username = ?";
