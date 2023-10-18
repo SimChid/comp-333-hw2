@@ -2,6 +2,8 @@
 <head></head>
 <body>
     <?php
+        /* Make sure the user is actually signed in, giving a bit of information if
+        so, redirecting otherwise */
         session_start();
         if(! $_SESSION['logged_in']){
             header("location: index.php");
@@ -10,7 +12,8 @@
         $user = $_SESSION['user'] ;
         echo "You are logged in as $user ";
         echo "<p><a href = index.php>Log Out</a></p>";
-
+        
+        // connect to localhost phpMyAdmin
         $servername = "localhost";
         $username = "root";
         $password = "";
@@ -20,16 +23,17 @@
         $s_ID = $_REQUEST['songID'];
 
         
-        // Get the song the might be updated
+        // Get the song that might be updated
         $query = "SELECT * FROM ratings WHERE id = ?" ;
         $stmt = mysqli_prepare($conn, $query) ;
         mysqli_stmt_bind_param($stmt, "i", $s_ID) ;
         mysqli_stmt_execute($stmt) ;
         mysqli_stmt_bind_result($stmt, $s_id, $s_username,$s_artist,$s_song,$s_rating);
         mysqli_stmt_fetch($stmt) ;
-        
+        // Conditional triggered when the user submits the html form at the bottom of the page.
         if(isset($_REQUEST["submit"])){
             $conn = new mysqli($servername, $username, $password, $dbname);
+            // Process the input from the form
             $out_value = "";
             $s_Artist = $_REQUEST['artist'] ;
             $s_Song = $_REQUEST['song'] ;
@@ -68,6 +72,7 @@
         $conn->close();
 
     ?>
+    <!-- Form for user to input the desired change to their rating -->
     <h1>Update a Song Rating</h1>
     <form method="GET" action="">
     Artist: <input type="text" name="artist" placeholder="Artist" value = "<?php echo $s_artist ; ?>" /><br>
