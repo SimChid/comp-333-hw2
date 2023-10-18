@@ -15,7 +15,7 @@
         $password = "";
         $dbname = "music_db";
         $conn = new mysqli($servername, $username, $password, $dbname);
-        $s_ID = $_REQUEST['songID'];
+        $s_ID = trim($_REQUEST['songID']);
         /* 
         When I manually set $s_ID to the correct index, the delete works. However, when I 
         assign it to $_REQUEST['songID'] it does not. This is perplexing because when I echo 
@@ -34,7 +34,7 @@
             $sql = "DELETE FROM ratings WHERE id=?";
             $stmt = mysqli_prepare($conn, $sql);
             echo "got here" ;
-            mysqli_stmt_bind_param($stmt, "s", $s_ID);
+            mysqli_stmt_bind_param($stmt, "i", $s_ID);
             echo "got here2" ;
             // Run the prepared statement.
             mysqli_stmt_execute($stmt);
