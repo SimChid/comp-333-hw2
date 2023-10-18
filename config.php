@@ -1,4 +1,8 @@
 <?php
+    /*
+    Imported using require into most other php files. Concisely establishes a
+    connection to localhost phpMyAdmin for sql queries
+    */
     $servername = "localhost";
     $username = "root";
     $password = "";

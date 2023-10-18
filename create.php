@@ -2,6 +2,8 @@
 <head></head>
 <body>
     <?php
+        /* Make sure the user is actually signed in, giving a bit of information if
+        so, redirecting otherwise */
         session_start();
         if(! $_SESSION['logged_in']){
             header("location: index.php");
@@ -10,7 +12,8 @@
         $user = $_SESSION['user'];
         echo "You are logged in as $user";
         echo "<p><a href = index.php>Log Out</a></p>";
-
+        
+        // connect to localhost phpMyAdmin
         $servername = "localhost";
         $username = "root";
         $password = "";
@@ -18,8 +21,9 @@
 
         $conn = new mysqli($servername, $username, $password, $dbname);
         if ($conn->connect_error) {die("Connection failed: " . $conn->connect_error);}
-
+        // Conditional triggered when the user submits the html form at the bottom of the page.
         if(isset($_REQUEST["submit"])){
+            // Process the input from the form
             $out_value = "";
             $s_Artist = $_REQUEST['artist'] ;
             $s_Song = $_REQUEST['song'] ;
@@ -58,6 +62,7 @@
         }
         $conn->close();
     ?>
+    <!-- The form the user fills out to create a new rating -->
     <h1>Add New Song Rating</h1>
     <p> Username:  <?php echo "$user" ; ?></p>
     <form method="GET" action="">
