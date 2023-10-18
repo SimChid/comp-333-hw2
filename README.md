@@ -18,8 +18,9 @@ General functionality:
 - The user is also allowed to update and delete their own reviews to the catalogue, but not to others' reviews.
 
 Simon Chidley Tables:
-<img width="784" alt="Screenshot 2023-10-17 at 8 22 26 PM" src="https://github.com/SimChid/comp-333-hw2/assets/144281352/8a038597-a3b9-41dd-86ad-bfd22da57e0e">
-<img width="868" alt="Screenshot 2023-10-17 at 9 42 45 PM" src="https://github.com/SimChid/comp-333-hw2/assets/144281352/ce93acd4-7d0f-47a6-a8e5-3ecad8a61848">
+<img width="871" alt="Screenshot 2023-10-17 at 9 44 54 PM" src="https://github.com/SimChid/comp-333-hw2/assets/144281352/c7ecd6d8-7835-481a-b150-d755d6d9566d">
+<img width="805" alt="Screenshot 2023-10-17 at 9 45 09 PM" src="https://github.com/SimChid/comp-333-hw2/assets/144281352/4b6998f4-5c7f-4df1-b93f-2466709d6be4">
+
 
 Aaron Foote Tables:
 <img width="900" alt="Screenshot 2023-10-17 at 8 37 26 PM" src="https://github.com/SimChid/comp-333-hw2/assets/130381602/c456b655-2459-47fa-bb28-a049bcaa8f73">
