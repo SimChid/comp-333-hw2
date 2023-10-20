@@ -1,7 +1,7 @@
 # comp-333-hw2
 Bare-bone database for a music rating app.
 
-Website link: comp-333-scaf.lovestoblog.com
+Website link: [comp-333-scaf.lovestoblog.com](https://comp-333-scaf.lovestoblog.com/)
 
 ## Setting Up the Development Environment:
 
